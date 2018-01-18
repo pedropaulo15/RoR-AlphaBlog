@@ -1,3 +1,5 @@
+<h1>Edit existing Article</h1>
+
 <% if @article.errors.any? %>
 <h2>The following errors prevented the article from getting created.</h2>
   <ul>
@@ -7,9 +9,8 @@
   </ul>
 <% end %>
 
-<h1>Create an Article</h1>
-
 <!-- The variable instance @articles eas created on articles_controller "new" method -->
+<!-- As this is a module help form, it fills the data regarding to the article id got from the route(URL) -->
 <%= form_for @article do |f| %>
   
   <p>
