@@ -8,7 +8,8 @@ class ArticlesController < ApplicationController
   
   def index
     # @articles new instance variable is going to have all articles from the databse
-    @articles = Article.all
+    # The paginate method is used to insert pagination on the template
+    @articles = Article.paginate(page: params[:page], per_page: 5)
   end
   
   def new 

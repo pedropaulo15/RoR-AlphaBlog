@@ -5,6 +5,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 # The bcryp gem is necessary to authenticate the user's password and encrypt it.
 gem 'bcrypt', '~> 3.1.7'
+# The following two gems are used to include pagination to the templates
+gem 'will_paginate', '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '~> 5.0'
