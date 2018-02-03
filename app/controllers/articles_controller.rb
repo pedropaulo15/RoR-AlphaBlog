@@ -30,9 +30,11 @@ class ArticlesController < ApplicationController
   end
   
   def create 
+    #debugger
     # Works like a console.log, to print the content from the form
     # render plain: params[:article].inspect
     @article = Article.new(article_params)
+    @article.user = User.first;
     if @article.save
       # Display a message to the user if the message was created.
       flash[:success] = "Article was successfully created!"

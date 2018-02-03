@@ -1,6 +1,6 @@
 class AddDescriptionToArticles < ActiveRecord::Migration
   def change
-    # Add thre new columns (description, created_at, updated_at) to the Articles table, and its data types.
+    # Add the new columns (description, created_at, updated_at) to the Articles table, and its data types.
     add_column :articles, :description, :text
     # Timestamp
     add_column :articles, :created_at, :datetime
