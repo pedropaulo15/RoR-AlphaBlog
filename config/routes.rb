@@ -7,7 +7,16 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
 
+  # All routes for articles
   resources :articles
+  
+  # Route to register a new user from the UI
+  get 'signup', to: 'users#new'
+  #The next two routes would work to create a new user, however the resources gives me 
+  #all actions that i will need at once, instead of having to configure one by one with 'post'.
+  #post 'users', to: 'users#create'
+  resources :users, except: [:new]
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
