@@ -5,6 +5,14 @@ class ArticlesController < ApplicationController
   # The method will retun @article.find(params[:id]) line of code, which will 
   # grab the article regarding to the id that is being passed through the URL(Route)
   before_action :set_article, only: [:edit, :update, :show, :destroy]
+  # The require_user was created on application controller, so is accessible from any other 
+  # controller. It returns the user object that is logged in (from session). It 
+  # It gets the user before execute the crud actions, to make sure the user can only 
+  # manage their own articles
+  before_action :require_user, except: [:index, :show]
+  # It prevents the users to access other user's articles through the url, and delete or edit it.
+  # This reuqire_same_user was create down below that controller/class.
+  before_action :require_same_user, only: [:edit, :destroy, :update]
   
   def index
     # @articles new instance variable is going to have all articles from the databse
@@ -35,7 +43,7 @@ class ArticlesController < ApplicationController
     # Works like a console.log, to print the content from the form
     # render plain: params[:article].inspect
     @article = Article.new(article_params)
-    @article.user = User.first;
+    @article.user = current_user
     if @article.save
       # Display a message to the user if the message was created.
       flash[:success] = "Article was successfully created!"
@@ -62,6 +70,13 @@ class ArticlesController < ApplicationController
   
   private def set_article
     @article = Article.find(params[:id])
+  end
+  
+  def require_same_user
+    if current_user != @article.user
+      flash[:danger] = "You can only edit or delete your own articles."
+      redirect_to root_path
+    end
   end
   
 end

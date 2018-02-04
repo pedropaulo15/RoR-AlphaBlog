@@ -1,0 +1,30 @@
+<h1 align="center">Log In</h1>
+
+<!-- This form is not going to hit the DB, so we need to specify the path
+      In Here we are working with session.-->
+<%= form_for(:session, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label :email %>
+    </div>
+    <div class="col-sm-8">
+      <%= f.email_field :email, class: "form-control", placeholder: "Enter Email", autofocus: true %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="control-label col-sm-2">
+      <%= f.label :password %>
+    </div>
+    <div class="col-sm-8">
+      <%= f.password_field :password, class: "form-control", placeholder: "Enter Password", autocomplete: "off" %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Login", class: "btn btn-primary btn-lg"  %> <!-- It submits to the create method on articles_controller -->
+    </div>
+  </div>
+  
+<% end %>
