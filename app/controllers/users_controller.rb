@@ -14,8 +14,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # Sets the user id to the session, indicating the new user created is now also logged in
+      session[:user_id] = @user.id
+      # Message to the new user
       flash[:success] = "Welcome to the Alpha Blog #{@user.username}"
-      redirect_to articles_path
+      # redirect the new user to it's profile view.
+      redirect_to user_path(@user)
     else
       render 'new'
     end
