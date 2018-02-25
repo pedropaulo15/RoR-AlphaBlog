@@ -3,7 +3,7 @@ require 'test_helper'
 class CategoriesControllerTest < ActionController::TestCase
   
   def setup
-    @category = Category.create(name: "sports")  
+    @category = Category.create(name: "Sports")  
   end
    
   test "should get categories index" do
