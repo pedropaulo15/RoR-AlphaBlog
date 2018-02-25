@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   #post 'users', to: 'users#create'
   resources :users, except: [:new]
   
+  # It brings all the routes for the categories
+  resources :categories, except: [:destroy]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
