@@ -34,5 +34,4 @@ class CategoriesControllerTest < ActionController::TestCase
     end
     assert_redirected_to categories_path
   end
-  
 end

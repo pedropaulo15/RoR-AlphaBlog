@@ -8,14 +8,15 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
   
   # Simulating a user interaction
   test "get new category form and create category" do
-    sign_in_ad(@user, "password")
+    sign_in_as(@user, "password")
     # Going to a new categoty path
     get new_category_path
     # Getting the form from adding a new category
     assert_template 'categories/new'
+    assert_response :success
     # Posting the new form creating this new category "sports"
     assert_difference 'Category.count', 1 do
-      # Redirects me to the create action
+      # Redirects me to the create action and add a new category by the POST request
       post_via_redirect categories_path, category: {name: "sports"}
     end
     # After beign created, it will redirect to the index page
@@ -27,7 +28,7 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
   # Simulating if an invalid input is actually blocked
   test "Invalid category submission results in failure" do
     
-    sign_in_ad(@user, "password")
+    sign_in_as(@user, "password")
     
     get new_category_path
     assert_template 'categories/new'
@@ -41,5 +42,4 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
     assert_select 'h2.panel-title'
     assert_select 'div.panel-body'
   end
-  
 end
